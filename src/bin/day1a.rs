@@ -6,10 +6,21 @@ use anyhow::Result;
 use std::io;
 use std::io::BufRead;
 
+use std::collections::BTreeSet;
+
 fn main() -> Result<()> {
+    let mut numbers: BTreeSet<u128> = BTreeSet::new();
     let stdin = io::stdin();
     for line in stdin.lock().lines() {
-        println!("{}", line.unwrap());
+        numbers.insert(line?.parse()?);
+    }
+    for n in &numbers {
+        let m = 2020 - n;
+        if !numbers.contains(&m) {
+            continue;
+        }
+        println!("{}", m * n);
+        break;
     }
     Ok(())
 }
