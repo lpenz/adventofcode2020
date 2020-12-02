@@ -2,17 +2,14 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE', which is part of this source code package.
 
-use anyhow::anyhow;
-use anyhow::Result;
+use anyhow::{anyhow, Result};
 use regex::Regex;
-use std::io;
-use std::io::BufRead;
+use std::io::{stdin, BufRead};
 
-fn get(m: &regex::Captures, name: &str) -> Result<String> {
+fn get<'a>(m: &'a regex::Captures, name: &str) -> Result<&'a str> {
     Ok(m.name(name)
         .ok_or_else(|| anyhow!("{} not found", name))?
-        .as_str()
-        .to_string())
+        .as_str())
 }
 
 fn process(bufin: impl BufRead) -> Result<i32> {
@@ -43,6 +40,6 @@ fn test() -> Result<()> {
 }
 
 fn main() -> Result<()> {
-    println!("{}", process(io::stdin().lock())?);
+    println!("{}", process(stdin().lock())?);
     Ok(())
 }

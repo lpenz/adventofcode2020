@@ -2,27 +2,33 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE', which is part of this source code package.
 
-use anyhow::Result;
-use std::io;
-use std::io::BufRead;
-
+use anyhow::{anyhow, Result};
 use std::collections::BTreeSet;
+use std::io::{stdin, BufRead};
 
-fn main() -> Result<()> {
-    let mut numbers: BTreeSet<u128> = BTreeSet::new();
-    let stdin = io::stdin();
-    for line in stdin.lock().lines() {
-        numbers.insert(line?.parse()?);
-    }
-    for n in &numbers {
+fn process(bufin: impl BufRead) -> Result<i64> {
+    let mut numbers: BTreeSet<i64> = BTreeSet::new();
+    for line in bufin.lines() {
+        let n = line?.parse()?;
         for m in &numbers {
             let k = 2020 - m - n;
-            if !numbers.contains(&m) {
-                continue;
+            if numbers.contains(&k) {
+                return Ok(m * n * k);
             }
-            println!("{}", m * n * k);
-            return Ok(());
         }
+        numbers.insert(n);
     }
+    Err(anyhow!("numbers not found"))
+}
+
+#[test]
+fn test() -> Result<()> {
+    let input: &[u8] = b"1721\n979\n366\n299\n675\n1456\n";
+    assert_eq!(process(input)?, 241861950);
+    Ok(())
+}
+
+fn main() -> Result<()> {
+    println!("{}", process(stdin().lock())?);
     Ok(())
 }
