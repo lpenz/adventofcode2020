@@ -103,19 +103,18 @@ pub fn toresp(nextcups: &[usize]) -> String {
     ret
 }
 
-// Leave slot test commented out
-// #[test]
-// fn test_b() -> Result<()> {
-//     eprintln!("");
-//     let input: &[u8] = b"389125467\n";
-//     let mut cups = parser::parse(input)?;
-//     eprintln!("{:?}", &cups[0..15]);
-//     domoves(&mut cups, 10_000_000);
-//     let resp = getresp(&cups);
-//     eprintln!("{:?}", &cups[0..15]);
-//     assert_eq!(resp, 149245887792);
-//     Ok(())
-// }
+#[test]
+fn test_b() -> Result<()> {
+    eprintln!("");
+    let input: &[u8] = b"389125467\n";
+    let mut cups = parser::parse(input)?;
+    eprintln!("{:?}", &cups[0..15]);
+    domoves(&mut cups, 10_000_000);
+    let resp = getresp(&cups);
+    eprintln!("{:?}", &cups[0..15]);
+    assert_eq!(resp, 149245887792);
+    Ok(())
+}
 
 fn main() -> Result<()> {
     println!("{}", process(stdin().lock())?);

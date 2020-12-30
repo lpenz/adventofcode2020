@@ -79,14 +79,13 @@ fn process(bufin: impl BufRead) -> Result<usize> {
     Ok(cubes.len())
 }
 
-// too slow:
-// #[test]
-// fn test() -> Result<()> {
-//     let input: &[u8] = b".#.\n..#\n###\n";
-//     eprintln!("");
-//     assert_eq!(process(input)?, 848);
-//     Ok(())
-// }
+#[test]
+fn test() -> Result<()> {
+    let input: &[u8] = b".#.\n..#\n###\n";
+    eprintln!("");
+    assert_eq!(process(input)?, 848);
+    Ok(())
+}
 
 fn main() -> Result<()> {
     println!("{}", process(stdin().lock())?);
