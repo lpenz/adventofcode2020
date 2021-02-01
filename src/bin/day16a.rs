@@ -29,7 +29,7 @@ fn process(bufin: impl BufRead) -> Result<i32> {
     let mut rules: Vec<(i32, i32)> = vec![];
     loop {
         let line = line_next(&mut lines_iter)?;
-        if line == "" {
+        if line.is_empty() {
             break;
         }
         let m = rule_re

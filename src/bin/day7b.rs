@@ -90,7 +90,7 @@ struct Rules {
 impl Rules {
     pub fn insert(&mut self, rule: Rule) {
         let entry = self.edges.entry(rule.bag.clone());
-        let innervec = entry.or_insert(vec![]);
+        let innervec = entry.or_insert_with(Vec::new);
         for (innernum, innerbag) in rule.iter() {
             innervec.push((*innernum, innerbag.clone()));
         }

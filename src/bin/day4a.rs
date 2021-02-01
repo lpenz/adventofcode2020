@@ -20,7 +20,7 @@ fn process(bufin: impl BufRead) -> Result<i32> {
     let mut num_valid = 0;
     for line_opt in bufin.lines() {
         let line = line_opt?;
-        if line == "" {
+        if line.is_empty() {
             // passport is complete, check validity
             if valid(&passport) {
                 num_valid += 1;

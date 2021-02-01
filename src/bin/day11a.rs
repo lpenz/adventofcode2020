@@ -34,7 +34,7 @@ impl Ferry {
         self.xymax.1 = y;
     }
 
-    pub fn iter_xy<'a>(&'a self) -> impl Iterator<Item = XY> + 'a {
+    pub fn iter_xy(&self) -> impl Iterator<Item = XY> + '_ {
         self.seats.iter().map(|(xy, _)| *xy)
     }
 

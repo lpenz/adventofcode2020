@@ -94,7 +94,7 @@ impl Rules {
     pub fn insert(&mut self, rule: Rule) {
         for (_, innerbag) in rule.iter() {
             let entry = self.edges.entry(innerbag.clone());
-            let outervec = entry.or_insert(vec![]);
+            let outervec = entry.or_insert_with(Vec::new);
             outervec.push(rule.bag.clone());
         }
     }

@@ -13,7 +13,6 @@ pub mod parser {
         combinator::all_consuming, combinator::map, multi::separated_list1, IResult,
     };
     use std::collections::VecDeque;
-    use std::iter::FromIterator;
     use std::str::FromStr;
 
     pub fn card(input: &str) -> IResult<&str, i32> {
@@ -27,7 +26,7 @@ pub mod parser {
         let (input, _) = tag(":\n")(input)?;
         let (input, cards) = separated_list1(char('\n'), card)(input)?;
         let (input, _) = char('\n')(input)?;
-        Ok((input, VecDeque::from_iter(cards.into_iter())))
+        Ok((input, cards.into_iter().collect()))
     }
 
     pub fn decks2(input: &str) -> IResult<&str, [VecDeque<i32>; 2]> {

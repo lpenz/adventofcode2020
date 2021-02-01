@@ -53,7 +53,7 @@ impl XYZ {
         XYZ { x, y, z }
     }
 
-    pub fn neighs<'a>(&'a self) -> impl Iterator<Item = XYZ> + 'a {
+    pub fn neighs(&self) -> impl Iterator<Item = XYZ> + '_ {
         XYZ::COORDS
             .iter()
             .map(move |xyz| XYZ::new(xyz.x + self.x, xyz.y + self.y, xyz.z + self.z))
@@ -68,7 +68,7 @@ fn process(bufin: impl BufRead) -> Result<usize> {
         let line = line_opt?;
         for (x, c) in line.chars().enumerate() {
             if c == '#' {
-                cubes.insert(XYZ::new(x as i32, y as i32, 0 as i32));
+                cubes.insert(XYZ::new(x as i32, y as i32, 0_i32));
             }
         }
     }

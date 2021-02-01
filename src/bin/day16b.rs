@@ -41,7 +41,7 @@ fn process(bufin: impl BufRead) -> Result<i64> {
     let mut rule_limits: Vec<(i64, i64, i64, i64)> = vec![];
     loop {
         let line = line_next(&mut lines_iter)?;
-        if line == "" {
+        if line.is_empty() {
             break;
         }
         let m = rule_re

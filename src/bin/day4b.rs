@@ -63,12 +63,12 @@ impl Passport {
         let val = re_get(&hgt_m, "value")?.parse::<i32>()?;
         match re_get(&hgt_m, "unit")? {
             "cm" => {
-                if val < 150 || val > 193 {
+                if !(150..=193).contains(&val) {
                     return Err(anyhow!("invalid cm height {}", val));
                 }
             }
             "in" => {
-                if val < 59 || val > 76 {
+                if !(59..=76).contains(&val) {
                     return Err(anyhow!("invalid in height {}", val));
                 }
             }
@@ -117,7 +117,7 @@ fn process(bufin: impl BufRead) -> Result<i32> {
     let mut num_valid = 0;
     for line_opt in bufin.lines() {
         let line = line_opt?;
-        if line == "" {
+        if line.is_empty() {
             // passport is complete, check validity
             if passport.is_valid() {
                 num_valid += 1;

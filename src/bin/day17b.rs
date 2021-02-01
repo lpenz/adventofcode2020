@@ -36,7 +36,7 @@ impl XYZW {
         XYZW { x, y, z, w }
     }
 
-    pub fn neighs<'a>(&'a self) -> impl Iterator<Item = XYZW> + 'a {
+    pub fn neighs(&self) -> impl Iterator<Item = XYZW> + '_ {
         COORDS.iter().map(move |xyzw| {
             XYZW::new(
                 xyzw.x + self.x,
@@ -56,7 +56,7 @@ fn process(bufin: impl BufRead) -> Result<usize> {
         let line = line_opt?;
         for (x, c) in line.chars().enumerate() {
             if c == '#' {
-                cubes.insert(XYZW::new(x as i32, y as i32, 0 as i32, 0 as i32));
+                cubes.insert(XYZW::new(x as i32, y as i32, 0_i32, 0_i32));
             }
         }
     }

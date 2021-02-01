@@ -16,7 +16,6 @@ pub mod parser {
     };
     use std::collections::VecDeque;
     use std::io::BufRead;
-    use std::iter::FromIterator;
 
     pub fn cup(input: &str) -> IResult<&str, u8> {
         let (input, cup) = map(one_of("0123456789"), |c| c.to_digit(10).unwrap())(input)?;
@@ -26,7 +25,7 @@ pub mod parser {
     pub fn cups(input: &str) -> IResult<&str, VecDeque<u8>> {
         let (input, cups) = many1(cup)(input)?;
         let (input, _) = char('\n')(input)?;
-        Ok((input, VecDeque::from_iter(cups.into_iter())))
+        Ok((input, cups.into_iter().collect()))
     }
 
     pub fn allinput(input: &str) -> IResult<&str, VecDeque<u8>> {

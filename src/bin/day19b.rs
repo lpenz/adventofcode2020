@@ -70,7 +70,7 @@ fn process(bufin: impl BufRead) -> Result<i64> {
     let mut lines_iter = bufin.lines();
     loop {
         let line = line_next(&mut lines_iter)?;
-        if line == "" {
+        if line.is_empty() {
             break;
         }
         let m_rule = re_rule

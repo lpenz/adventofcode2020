@@ -26,7 +26,7 @@ fn process(bufin: impl BufRead) -> Result<usize> {
     let mut ans = 0;
     for line_opt in bufin.lines() {
         let line = line_opt?;
-        if line == "" {
+        if line.is_empty() {
             // group is complete, sum answers
             ans += bitsum(group);
             group = u32::MAX;
