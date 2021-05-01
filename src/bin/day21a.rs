@@ -164,7 +164,7 @@ fn process(mut bufin: impl BufRead) -> Result<usize> {
 #[test]
 fn test1() -> Result<()> {
     let input: &[u8] = b"mxmxvkd kfcds sqjhc nhms (contains dairy, fish)\ntrh fvjkl sbzzf mxmxvkd (contains dairy)\nsqjhc fvjkl (contains soy)\nsqjhc mxmxvkd sbzzf (contains fish)\n";
-    eprintln!("");
+    eprintln!();
     // mxmxvkd kfcds sqjhc nhms (contains dairy, fish)
     // trh fvjkl sbzzf mxmxvkd (contains dairy)
     // sqjhc fvjkl (contains soy)

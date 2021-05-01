@@ -78,7 +78,7 @@ fn process(bufin: impl BufRead) -> Result<i64> {
 
 #[test]
 fn test0() -> Result<()> {
-    eprintln!("");
+    eprintln!();
     let input: &[u8] = b"5764801\n17807724\n";
     assert_eq!(process(input)?, 14897079);
     Ok(())
@@ -86,7 +86,7 @@ fn test0() -> Result<()> {
 
 #[test]
 fn test_calc_loopsize() -> Result<()> {
-    eprintln!("");
+    eprintln!();
     assert_eq!(calc_loopsize(5764801), 8);
     assert_eq!(calc_loopsize(17807724), 11);
     Ok(())
@@ -94,7 +94,7 @@ fn test_calc_loopsize() -> Result<()> {
 
 #[test]
 fn test_transform() -> Result<()> {
-    eprintln!("");
+    eprintln!();
     assert_eq!(transform(7, 8), 5764801);
     assert_eq!(transform(7, 11), 17807724);
     Ok(())

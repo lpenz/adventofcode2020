@@ -32,7 +32,7 @@ pub fn mask2value(mask: u64) -> usize {
 // Process, etc //
 
 fn process(bufin: impl BufRead) -> Result<i64> {
-    eprintln!("");
+    eprintln!();
     let mut lines_iter = bufin.lines();
     let rule_re = Regex::new(
         r"^(?P<name>[^:]+): (?P<range1min>[0-9]+)-(?P<range1max>[0-9]+) or (?P<range2min>[0-9]+)-(?P<range2max>[0-9]+)$",

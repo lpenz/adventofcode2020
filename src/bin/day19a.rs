@@ -89,7 +89,7 @@ fn process(bufin: impl BufRead) -> Result<i64> {
 #[test]
 fn test1() -> Result<()> {
     let input: &[u8] = b"0: 4 1 5\n1: 2 3 | 3 2\n2: 4 4 | 5 5\n3: 4 5 | 5 4\n4: \"a\"\n5: \"b\"\n\nababbb\nbababa\nabbbab\naaabbb\naaaabbb\n";
-    eprintln!("");
+    eprintln!();
     assert_eq!(process(input)?, 2);
     Ok(())
 }

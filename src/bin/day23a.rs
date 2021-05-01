@@ -95,7 +95,7 @@ fn process(bufin: impl BufRead) -> Result<String> {
 
 #[test]
 fn test0() -> Result<()> {
-    eprintln!("");
+    eprintln!();
     let input: &[u8] = b"389125467\n";
     let mut cups = parser::parse(input)?;
     let mut icurr = 0;
@@ -106,7 +106,7 @@ fn test0() -> Result<()> {
 
 #[test]
 fn test1() -> Result<()> {
-    eprintln!("");
+    eprintln!();
     let input: &[u8] = b"389125467\n";
     let mut cups = parser::parse(input)?;
     let mut icurr = 0;
@@ -117,7 +117,7 @@ fn test1() -> Result<()> {
 
 #[test]
 fn test2() -> Result<()> {
-    eprintln!("");
+    eprintln!();
     let input: &[u8] = b"389125467\n";
     let mut cups = parser::parse(input)?;
     let mut icurr = 0;

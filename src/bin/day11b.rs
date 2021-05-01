@@ -6,7 +6,7 @@ use anyhow::Result;
 use std::collections::BTreeMap;
 use std::io::{stdin, BufRead};
 
-type XY = (i32, i32);
+type Xy = (i32, i32);
 
 const ITER_VEC: [(i32, i32); 8] = [
     (-1, -1),
@@ -21,8 +21,8 @@ const ITER_VEC: [(i32, i32); 8] = [
 
 #[derive(Default)]
 struct Ferry {
-    pub seats: BTreeMap<XY, bool>,
-    pub xymax: XY,
+    pub seats: BTreeMap<Xy, bool>,
+    pub xymax: Xy,
 }
 
 impl Ferry {
@@ -34,11 +34,11 @@ impl Ferry {
         self.xymax.1 = y;
     }
 
-    pub fn iter_xy(&self) -> impl Iterator<Item = XY> + '_ {
+    pub fn iter_xy(&self) -> impl Iterator<Item = Xy> + '_ {
         self.seats.iter().map(|(xy, _)| *xy)
     }
 
-    pub fn iter_visible_xy<'a>(&'a self, xy: &'a XY) -> impl Iterator<Item = XY> + 'a {
+    pub fn iter_visible_xy<'a>(&'a self, xy: &'a Xy) -> impl Iterator<Item = Xy> + 'a {
         ITER_VEC.iter().filter_map(move |ixy| {
             let mut nxy = (xy.0 + ixy.0, xy.1 + ixy.1);
             while self.seats.get(&nxy) == Some(&false) {
@@ -52,18 +52,18 @@ impl Ferry {
         })
     }
 
-    pub fn is_seat(&self, xy: &XY) -> bool {
+    pub fn is_seat(&self, xy: &Xy) -> bool {
         self.seats.get(&xy) == Some(&true)
     }
 
     pub fn iter(&self) -> i32 {
         let mut changed = true;
-        let mut last_occupied: BTreeMap<XY, bool> = Default::default();
+        let mut last_occupied: BTreeMap<Xy, bool> = Default::default();
         let mut total = 0;
         while changed {
             changed = false;
             total = 0;
-            let mut occupied: BTreeMap<XY, bool> = Default::default();
+            let mut occupied: BTreeMap<Xy, bool> = Default::default();
             for xy in self.iter_xy() {
                 let num = self
                     .iter_visible_xy(&xy)

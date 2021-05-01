@@ -31,17 +31,17 @@ impl FromStr for Dir {
     }
 }
 
-// XY //
+// Xy //
 
 #[derive(Debug, Copy, Clone)]
-pub struct XY {
+pub struct Xy {
     pub x: i32,
     pub y: i32,
 }
 
-impl XY {
-    pub fn new(x: i32, y: i32) -> XY {
-        XY { x, y }
+impl Xy {
+    pub fn new(x: i32, y: i32) -> Xy {
+        Xy { x, y }
     }
 }
 
@@ -59,10 +59,10 @@ impl DirDist {
     }
 }
 
-impl ops::Add<&DirDist> for XY {
-    type Output = XY;
+impl ops::Add<&DirDist> for Xy {
+    type Output = Xy;
     fn add(self, other: &DirDist) -> Self::Output {
-        XY::new(
+        Xy::new(
             self.x
                 + match other.dir {
                     Dir::E => other.dist,
@@ -83,15 +83,15 @@ impl ops::Add<&DirDist> for XY {
 
 #[derive(Debug)]
 struct Ship {
-    xy: XY,
-    wp: XY,
+    xy: Xy,
+    wp: Xy,
 }
 
 impl Default for Ship {
     fn default() -> Ship {
         Ship {
-            xy: XY::new(0, 0),
-            wp: XY::new(10, 1),
+            xy: Xy::new(0, 0),
+            wp: Xy::new(10, 1),
         }
     }
 }
@@ -107,11 +107,11 @@ impl ops::AddAssign<&Act> for Ship {
         match act {
             Act::D(dirdist) => self.wp = self.wp + dirdist,
             Act::F(dist) => {
-                self.xy = XY::new(self.xy.x + dist * self.wp.x, self.xy.y + dist * self.wp.y)
+                self.xy = Xy::new(self.xy.x + dist * self.wp.x, self.xy.y + dist * self.wp.y)
             }
-            Act::L => self.wp = XY::new(-self.wp.y, self.wp.x),
-            Act::R => self.wp = XY::new(self.wp.y, -self.wp.x),
-            Act::B => self.wp = XY::new(-self.wp.x, -self.wp.y),
+            Act::L => self.wp = Xy::new(-self.wp.y, self.wp.x),
+            Act::R => self.wp = Xy::new(self.wp.y, -self.wp.x),
+            Act::B => self.wp = Xy::new(-self.wp.x, -self.wp.y),
         };
     }
 }

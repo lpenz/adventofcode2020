@@ -7,14 +7,14 @@ use std::collections::BTreeMap;
 use std::io::{stdin, BufRead};
 
 #[derive(PartialEq, Eq, PartialOrd, Ord)]
-struct XY {
+struct Xy {
     x: usize,
     y: usize,
 }
 
-impl XY {
-    pub fn new(x: usize, y: usize) -> XY {
-        XY { x, y }
+impl Xy {
+    pub fn new(x: usize, y: usize) -> Xy {
+        Xy { x, y }
     }
 }
 
@@ -28,11 +28,11 @@ struct Param {
 
 fn process(bufin: impl BufRead) -> Result<u64> {
     let mut slope_trees = BTreeMap::new();
-    slope_trees.insert(XY::new(1, 1), Param::default());
-    slope_trees.insert(XY::new(3, 1), Param::default());
-    slope_trees.insert(XY::new(5, 1), Param::default());
-    slope_trees.insert(XY::new(7, 1), Param::default());
-    slope_trees.insert(XY::new(1, 2), Param::default());
+    slope_trees.insert(Xy::new(1, 1), Param::default());
+    slope_trees.insert(Xy::new(3, 1), Param::default());
+    slope_trees.insert(Xy::new(5, 1), Param::default());
+    slope_trees.insert(Xy::new(7, 1), Param::default());
+    slope_trees.insert(Xy::new(1, 2), Param::default());
     for (y, line_opt) in bufin.lines().enumerate() {
         let line = line_opt?;
         let width = line.len();

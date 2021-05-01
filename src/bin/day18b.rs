@@ -128,14 +128,14 @@ fn process(bufin: impl BufRead) -> Result<i64> {
 
 #[test]
 fn test_parser1() -> Result<()> {
-    eprintln!("");
+    eprintln!();
     assert_eq!(num("2345asdf")?, ("asdf", Token::Num(2345)));
     Ok(())
 }
 
 #[test]
 fn test_parser2() -> Result<()> {
-    eprintln!("");
+    eprintln!();
     assert_eq!(
         parse_tokens("1+2*3+(4*5)+8")?,
         (
@@ -162,7 +162,7 @@ fn test_parser2() -> Result<()> {
 
 #[test]
 fn test_parser3() -> Result<()> {
-    eprintln!("");
+    eprintln!();
     assert_eq!(
         parse_tokens("1 +  2 * 3+(    4 *5)+  8")?,
         (
@@ -190,7 +190,7 @@ fn test_parser3() -> Result<()> {
 #[test]
 fn test1() -> Result<()> {
     let input: &[u8] = b"1 + 2 * 3 + 4 * 5 + 6\n";
-    eprintln!("");
+    eprintln!();
     assert_eq!(process(input)?, 231);
     Ok(())
 }
@@ -198,7 +198,7 @@ fn test1() -> Result<()> {
 #[test]
 fn test2() -> Result<()> {
     let input: &[u8] = b"1 + (2 * 3) + (4 * (5 + 6))\n";
-    eprintln!("");
+    eprintln!();
     assert_eq!(process(input)?, 51);
     Ok(())
 }
@@ -206,7 +206,7 @@ fn test2() -> Result<()> {
 #[test]
 fn test3() -> Result<()> {
     let input: &[u8] = b"2 * 3 + (4 * 5)\n";
-    eprintln!("");
+    eprintln!();
     assert_eq!(process(input)?, 46);
     Ok(())
 }
@@ -214,7 +214,7 @@ fn test3() -> Result<()> {
 #[test]
 fn test4() -> Result<()> {
     let input: &[u8] = b"5 + (8 * 3 + 9 + 3 * 4 * 3)\n";
-    eprintln!("");
+    eprintln!();
     assert_eq!(process(input)?, 1445);
     Ok(())
 }
@@ -222,7 +222,7 @@ fn test4() -> Result<()> {
 #[test]
 fn test5() -> Result<()> {
     let input: &[u8] = b"5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))\n";
-    eprintln!("");
+    eprintln!();
     assert_eq!(process(input)?, 669060);
     Ok(())
 }
@@ -230,7 +230,7 @@ fn test5() -> Result<()> {
 #[test]
 fn test6() -> Result<()> {
     let input: &[u8] = b"((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2\n";
-    eprintln!("");
+    eprintln!();
     assert_eq!(process(input)?, 23340);
     Ok(())
 }
@@ -238,7 +238,7 @@ fn test6() -> Result<()> {
 #[test]
 fn test7() -> Result<()> {
     let input: &[u8] = b"1 + (2 * 3)\n";
-    eprintln!("");
+    eprintln!();
     assert_eq!(process(input)?, 7);
     Ok(())
 }

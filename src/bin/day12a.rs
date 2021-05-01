@@ -59,17 +59,17 @@ impl ops::Add<&Act> for Dir {
     }
 }
 
-// XY //
+// Xy //
 
 #[derive(Debug, Copy, Clone)]
-pub struct XY {
+pub struct Xy {
     pub x: i32,
     pub y: i32,
 }
 
-impl XY {
-    pub fn new(x: i32, y: i32) -> XY {
-        XY { x, y }
+impl Xy {
+    pub fn new(x: i32, y: i32) -> Xy {
+        Xy { x, y }
     }
 }
 
@@ -87,10 +87,10 @@ impl DirDist {
     }
 }
 
-impl ops::Add<&DirDist> for XY {
-    type Output = XY;
+impl ops::Add<&DirDist> for Xy {
+    type Output = Xy;
     fn add(self, other: &DirDist) -> Self::Output {
-        XY::new(
+        Xy::new(
             self.x
                 + match other.dir {
                     Dir::E => other.dist,
@@ -111,14 +111,14 @@ impl ops::Add<&DirDist> for XY {
 
 #[derive(Debug)]
 struct Ship {
-    xy: XY,
+    xy: Xy,
     dir: Dir,
 }
 
 impl Default for Ship {
     fn default() -> Ship {
         Ship {
-            xy: XY::new(0, 0),
+            xy: Xy::new(0, 0),
             dir: Dir::E,
         }
     }

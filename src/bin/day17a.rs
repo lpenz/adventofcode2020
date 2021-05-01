@@ -8,55 +8,55 @@ use std::collections::BTreeSet;
 use std::io::{stdin, BufRead};
 
 #[derive(Default, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
-pub struct XYZ {
+pub struct Xyz {
     x: i32,
     y: i32,
     z: i32,
 }
 
-impl XYZ {
-    const COORDS: [XYZ; 26] = [
-        XYZ {
+impl Xyz {
+    const COORDS: [Xyz; 26] = [
+        Xyz {
             x: -1,
             y: -1,
             z: -1,
         },
-        XYZ { x: -1, y: -1, z: 0 },
-        XYZ { x: -1, y: -1, z: 1 },
-        XYZ { x: -1, y: 0, z: -1 },
-        XYZ { x: -1, y: 0, z: 0 },
-        XYZ { x: -1, y: 0, z: 1 },
-        XYZ { x: -1, y: 1, z: -1 },
-        XYZ { x: -1, y: 1, z: 0 },
-        XYZ { x: -1, y: 1, z: 1 },
-        XYZ { x: 0, y: -1, z: -1 },
-        XYZ { x: 0, y: -1, z: 0 },
-        XYZ { x: 0, y: -1, z: 1 },
-        XYZ { x: 0, y: 0, z: -1 },
-        // XYZ{ x:0, y:0,z: 0},
-        XYZ { x: 0, y: 0, z: 1 },
-        XYZ { x: 0, y: 1, z: -1 },
-        XYZ { x: 0, y: 1, z: 0 },
-        XYZ { x: 0, y: 1, z: 1 },
-        XYZ { x: 1, y: -1, z: -1 },
-        XYZ { x: 1, y: -1, z: 0 },
-        XYZ { x: 1, y: -1, z: 1 },
-        XYZ { x: 1, y: 0, z: -1 },
-        XYZ { x: 1, y: 0, z: 0 },
-        XYZ { x: 1, y: 0, z: 1 },
-        XYZ { x: 1, y: 1, z: -1 },
-        XYZ { x: 1, y: 1, z: 0 },
-        XYZ { x: 1, y: 1, z: 1 },
+        Xyz { x: -1, y: -1, z: 0 },
+        Xyz { x: -1, y: -1, z: 1 },
+        Xyz { x: -1, y: 0, z: -1 },
+        Xyz { x: -1, y: 0, z: 0 },
+        Xyz { x: -1, y: 0, z: 1 },
+        Xyz { x: -1, y: 1, z: -1 },
+        Xyz { x: -1, y: 1, z: 0 },
+        Xyz { x: -1, y: 1, z: 1 },
+        Xyz { x: 0, y: -1, z: -1 },
+        Xyz { x: 0, y: -1, z: 0 },
+        Xyz { x: 0, y: -1, z: 1 },
+        Xyz { x: 0, y: 0, z: -1 },
+        // Xyz{ x:0, y:0,z: 0},
+        Xyz { x: 0, y: 0, z: 1 },
+        Xyz { x: 0, y: 1, z: -1 },
+        Xyz { x: 0, y: 1, z: 0 },
+        Xyz { x: 0, y: 1, z: 1 },
+        Xyz { x: 1, y: -1, z: -1 },
+        Xyz { x: 1, y: -1, z: 0 },
+        Xyz { x: 1, y: -1, z: 1 },
+        Xyz { x: 1, y: 0, z: -1 },
+        Xyz { x: 1, y: 0, z: 0 },
+        Xyz { x: 1, y: 0, z: 1 },
+        Xyz { x: 1, y: 1, z: -1 },
+        Xyz { x: 1, y: 1, z: 0 },
+        Xyz { x: 1, y: 1, z: 1 },
     ];
 
-    pub fn new(x: i32, y: i32, z: i32) -> XYZ {
-        XYZ { x, y, z }
+    pub fn new(x: i32, y: i32, z: i32) -> Xyz {
+        Xyz { x, y, z }
     }
 
-    pub fn neighs(&self) -> impl Iterator<Item = XYZ> + '_ {
-        XYZ::COORDS
+    pub fn neighs(&self) -> impl Iterator<Item = Xyz> + '_ {
+        Xyz::COORDS
             .iter()
-            .map(move |xyz| XYZ::new(xyz.x + self.x, xyz.y + self.y, xyz.z + self.z))
+            .map(move |xyz| Xyz::new(xyz.x + self.x, xyz.y + self.y, xyz.z + self.z))
     }
 }
 
@@ -68,7 +68,7 @@ fn process(bufin: impl BufRead) -> Result<usize> {
         let line = line_opt?;
         for (x, c) in line.chars().enumerate() {
             if c == '#' {
-                cubes.insert(XYZ::new(x as i32, y as i32, 0_i32));
+                cubes.insert(Xyz::new(x as i32, y as i32, 0_i32));
             }
         }
     }
@@ -94,7 +94,7 @@ fn process(bufin: impl BufRead) -> Result<usize> {
 #[test]
 fn test() -> Result<()> {
     let input: &[u8] = b".#.\n..#\n###\n";
-    eprintln!("");
+    eprintln!();
     assert_eq!(process(input)?, 112);
     Ok(())
 }

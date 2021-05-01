@@ -109,7 +109,7 @@ fn process(mut bufin: impl BufRead) -> Result<i32> {
 #[test]
 fn test1() -> Result<()> {
     let input: &[u8] = b"Player 1:\n9\n2\n6\n3\n1\n\nPlayer 2:\n5\n8\n4\n7\n10\n";
-    eprintln!("");
+    eprintln!();
     assert_eq!(process(input)?, 291);
     Ok(())
 }
