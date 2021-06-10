@@ -1,10 +1,6 @@
 ---
-name: rust-ci
-on:
-  push:
-  pull_request:
-  schedule:
-    - cron:  '0 6 1 * *'
+name: CI
+on: [ push, pull_request ]
 jobs:
   # Rust actions from:
   # https://github.com/actions-rs/meta/blob/master/recipes/quickstart.md
@@ -38,11 +34,12 @@ jobs:
           CARGO_INCREMENTAL: '0'
           RUSTFLAGS: '-Zprofile -Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort -Zpanic_abort_tests'
           RUSTDOCFLAGS: '-Zprofile -Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort -Zpanic_abort_tests'
-      - uses: actions-rs/grcov@v0.1
-      - uses: codecov/codecov-action@v1
+      - id: coverage
+        uses: actions-rs/grcov@v0.1.5
+      - uses: coverallsapp/github-action@master
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: ${{ steps.coverage.outputs.report }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ${{ steps.coverage.outputs.report }}
   rustfmt:
     runs-on: ubuntu-latest
     steps:
@@ -71,4 +68,9 @@ jobs:
         with:
           command: clippy
           args: -- -D warnings
+  omnilint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: docker://lpenz/omnilint:v0.2
 
