@@ -1,9 +1,0 @@
----
-name: grcov
-description: grcov
-outputs:
-  report:
-    description: lcov report path
-runs:
-  using: 'docker'
-  image: 'Dockerfile'
