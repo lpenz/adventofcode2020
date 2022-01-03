@@ -101,7 +101,7 @@ impl Rules {
 
     pub fn num_outer_colors(&self, bag: &Bag) -> Result<BTreeSet<Bag>> {
         let mut visited = BTreeSet::new();
-        self.dfs(&bag, &mut visited)?;
+        self.dfs(bag, &mut visited)?;
         Ok(visited)
     }
 

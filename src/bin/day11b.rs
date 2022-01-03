@@ -53,7 +53,7 @@ impl Ferry {
     }
 
     pub fn is_seat(&self, xy: &Xy) -> bool {
-        self.seats.get(&xy) == Some(&true)
+        self.seats.get(xy) == Some(&true)
     }
 
     pub fn iter(&self) -> i32 {

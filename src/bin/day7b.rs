@@ -98,7 +98,7 @@ impl Rules {
 
     pub fn num_inner_bags(&self, bag: &Bag) -> Result<BTreeMap<Bag, usize>> {
         let mut solved: BTreeMap<Bag, usize> = BTreeMap::new();
-        self.dfs(&bag, &mut solved)?;
+        self.dfs(bag, &mut solved)?;
         Ok(solved)
     }
 

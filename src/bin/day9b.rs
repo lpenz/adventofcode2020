@@ -36,7 +36,7 @@ impl NotsumHunter {
                     // if lower > num / 2, it's already been checked
                     if self
                         .sums
-                        .get(&lower)
+                        .get(lower)
                         .with_context(|| format!("lower {} not found in sums!", lower))?
                         .contains(&num)
                     {
