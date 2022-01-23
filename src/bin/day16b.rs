@@ -58,7 +58,7 @@ fn process(bufin: impl BufRead) -> Result<i64> {
     assert_eq!(line_next(&mut lines_iter)?, "your ticket:".to_string());
     let myticket_line = line_next(&mut lines_iter)?;
     let mut myticket = vec![];
-    for s in myticket_line.split(',').into_iter() {
+    for s in myticket_line.split(',') {
         myticket.push(s.parse::<i64>()?);
     }
     assert_eq!(line_next(&mut lines_iter)?, "".to_string());
