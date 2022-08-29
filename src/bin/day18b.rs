@@ -9,7 +9,7 @@ use nom::{character::complete::char, multi::many0, multi::many1, IResult};
 
 // Process, etc //
 
-#[derive(Debug, PartialEq, Clone, Copy)]
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum Token {
     Num(i64),
     Plus,
