@@ -9,25 +9,9 @@ use std::io::{stdin, BufRead};
 
 // Ingredient, Allergen: interned strings //
 
-#[derive(Clone, Copy)]
-pub struct IngredientSymbol;
-impl string_intern::Validator for IngredientSymbol {
-    type Err = ::std::string::ParseError;
-    fn validate_symbol(_: &str) -> Result<(), Self::Err> {
-        Ok(())
-    }
-}
-type Ingredient = string_intern::Symbol<IngredientSymbol>;
+type Ingredient = String;
 
-#[derive(Clone, Copy)]
-pub struct AllergenSymbol;
-impl string_intern::Validator for AllergenSymbol {
-    type Err = ::std::string::ParseError;
-    fn validate_symbol(_: &str) -> Result<(), Self::Err> {
-        Ok(())
-    }
-}
-type Allergen = string_intern::Symbol<AllergenSymbol>;
+type Allergen = String;
 
 // Food //
 
