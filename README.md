@@ -8,5 +8,6 @@
 Code for the 2020 exercises at https://adventofcode.com/2020
 
 <table><tr>
+<td><a href="https://github.com/lpenz/adventofcode2019">:arrow_left: 2019</td>
 <td><a href="https://github.com/lpenz/adventofcode2021">2021 :arrow_right:</td>
 </tr></table>
